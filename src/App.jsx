@@ -9,12 +9,17 @@ import CarDetails from './components/CarDetails'
 import Container from './components/Container'
 import ExecuteFunction from './components/ExecuteFunction'
 import MessageState from './components/MessageState'
+import ChangeMessageState from './components/ChangeMessageState'
 
 const cars = [
           { id: 1, brand: "Ferrari", color: "Amarelo", km: 0 },
           { id: 2, brand: "KIA", color: "Branco", km: 200000 },
           { id: 3, brand: "Renault", color: "Azul", km: 32000 },
         ];
+
+const handleMessage = (msg) => {
+  setMessage(msg);
+};
 
 function App() {
   const [message, setMessage] = useState();
@@ -67,7 +72,10 @@ function App() {
         {/* event as prop */}
         <ExecuteFunction myFunction={showMessage} />
 
+        {/* state lift */}
         <MessageState msg={message} />
+        <ChangeMessageState handleMessage={handleMessage} />
+        
       </div>
     </>
   )
