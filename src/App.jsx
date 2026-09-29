@@ -1,6 +1,7 @@
 import './App.css'
 import city from './assets/city.jpg'
 import ManageData from './components/ManageData'
+import ListRender from './components/ListRender'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <img src={city} alt="Cidade Futurista" />
         </div>
         <ManageData />
+        <ListRender />
       </div>
     </>
   )
