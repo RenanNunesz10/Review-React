@@ -1,9 +1,18 @@
 import './App.css'
+import city from './assets/city.jpg'
 
 function App() {
   return (
     <>
-      Section 03
+      <div>
+      <h1> Section 03</h1>
+      </div>
+
+      <div>
+        <img src="/img1.jpg" alt="Paisagem" />
+
+        <img src={city} alt="Cidade Futurista" />
+      </div>
     </>
   )
 }
