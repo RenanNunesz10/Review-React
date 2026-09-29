@@ -1,184 +1,368 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* =========================================================
+   APP LAYOUT
+   A aplicação funciona como um painel de demonstrações.
+   ========================================================= */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
+.App {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 72px;
 
-.hero {
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
   text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
 }
 
-#docs {
-  border-right: 1px solid var(--border);
+/* Título principal da página. */
+.App > h1 {
+  grid-column: 1 / -1;
 
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+  margin: 0 0 4px;
+  text-align: center;
+
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #172033;
 }
 
-#next-steps ul {
-  list-style: none;
+/* =========================================================
+   CARDS
+   Os componentes renderizados diretamente dentro de App
+   recebem aparência de cards automaticamente.
+   ========================================================= */
+
+.App > div {
+  grid-column: span 6;
+
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #dde4ee;
+  border-radius: 14px;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.055);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.App > div:hover {
+  transform: translateY(-2px);
+  border-color: #c8d8ee;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.09);
+}
+
+/* =========================================================
+   HERO / IMAGENS
+   O primeiro div do App é a galeria com as duas imagens.
+   ========================================================= */
+
+.App > div:first-of-type {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
   padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.App > div:first-of-type:hover {
+  transform: none;
+  box-shadow: none;
 }
 
-.ticks {
-  position: relative;
+.App > div:first-of-type img {
   width: 100%;
+  height: 230px;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+  object-fit: cover;
+
+  border: 1px solid #d9e0ea;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   TIPOGRAFIA DOS COMPONENTES
+   ========================================================= */
+
+.App h1,
+.App h2,
+.App h3 {
+  color: #172033;
+}
+
+.App > div h1,
+.App > div h2,
+.App > div h3 {
+  margin-top: 0;
+}
+
+.App > div h1 {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+}
+
+.App > div h2 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.App > div h3 {
+  margin: 14px 0 8px;
+  font-size: 0.92rem;
+  color: #334155;
+}
+
+.App p {
+  margin: 8px 0;
+  color: #475569;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   LISTAS
+   ========================================================= */
+
+.App ul {
+  margin: 8px 0;
+  padding-left: 22px;
+}
+
+.App li {
+  margin: 7px 0;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.App li::marker {
+  color: #0d6efd;
+}
+
+/* O componente ListRender possui duas listas e um botão. */
+.App > div:has(> ul):has(> button) {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+}
+
+.App > div:has(> ul):has(> button) > ul {
+  margin: 0;
+}
+
+/* O botão de exclusão fica abaixo da lista de usuários. */
+.App > div:has(> ul):has(> button) > button {
+  grid-column: 2;
+  justify-self: start;
+
+  background: #dc3545;
+}
+
+.App > div:has(> ul):has(> button) > button:hover {
+  background: #bb2d3b;
+}
+
+/* =========================================================
+   GERENCIAMENTO DE DADOS
+   ManageData possui dois blocos internos.
+   ========================================================= */
+
+.App > div:has(> div > p):has(> div button) {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.App > div:has(> div > p):has(> div button) > div {
+  padding: 16px;
+
+  text-align: center;
+
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+/* Primeiro exemplo: variável comum. */
+.App > div:has(> div > p):has(> div button) > div:first-child button {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #d8e0ea;
+}
+
+.App > div:has(> div > p):has(> div button) > div:first-child button:hover {
+  background: #e2e8f0;
+}
+
+/* Segundo exemplo: state. */
+.App > div:has(> div > p):has(> div button) > div:last-child button {
+  background: #0d6efd;
+  color: #ffffff;
+}
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+.App button {
+  min-height: 38px;
+
+  padding: 9px 14px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: #0d6efd;
+  color: #ffffff;
+
+  font-weight: 600;
+  font-size: 0.88rem;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(13, 110, 253, 0.18);
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.App button:hover {
+  background: #0b5ed7;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(13, 110, 253, 0.22);
+}
+
+.App button:active {
+  transform: translateY(0);
+}
+
+.App button:focus-visible {
+  outline: 3px solid rgba(13, 110, 253, 0.24);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   PROPS / CAR DETAILS
+   Componentes que apresentam informações em lista ficam
+   compactos para formar uma grade visual.
+   ========================================================= */
+
+.App > div:has(> h2):has(> ul) {
+  grid-column: span 4;
+}
+
+.App > div:has(> h2):has(> ul) h2 {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+/* ShowUserName recebe destaque azul claro. */
+.App > div:has(> h2):not(:has(> ul)) {
+  border-color: #b9d6ff;
+  background: #f5f9ff;
+}
+
+/* =========================================================
+   CHILDREN / CONTAINER
+   ========================================================= */
+
+.App > div:has(> h1) {
+  background: #ffffff;
+}
+
+.App > div:has(> h1) > h1 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+/* =========================================================
+   ÚLTIMO EXEMPLO — BOTÕES DE MENSAGEM
+   O último componente contém os botões 1, 2 e 3.
+   ========================================================= */
+
+.App > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.App > div:last-child button {
+  min-width: 48px;
+
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #d8e0ea;
+  box-shadow: none;
+}
+
+.App > div:last-child button:hover {
+  background: #eaf3ff;
+  color: #0d6efd;
+  border-color: #aacbfa;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .App > div,
+  .App > div:has(> h2):has(> ul) {
+    grid-column: span 6;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .App > div:has(> ul):has(> button),
+  .App > div:has(> div > p):has(> div button) {
+    grid-column: 1 / -1;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+}
+
+@media (max-width: 680px) {
+  .App {
+    width: min(100% - 20px, 1180px);
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-top: 20px;
+  }
+
+  .App > h1,
+  .App > div,
+  .App > div:has(> h2):has(> ul),
+  .App > div:has(> ul):has(> button),
+  .App > div:has(> div > p):has(> div button) {
+    grid-column: 1;
+  }
+
+  .App > div:first-of-type,
+  .App > div:has(> ul):has(> button),
+  .App > div:has(> div > p):has(> div button) {
+    grid-template-columns: 1fr;
+  }
+
+  .App > div:first-of-type img {
+    height: 190px;
+  }
+
+  .App > div:has(> ul):has(> button) > button {
+    grid-column: 1;
   }
 }
