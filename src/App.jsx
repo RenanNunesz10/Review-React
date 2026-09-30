@@ -71,6 +71,14 @@ function App() {
           </div>
         </Container>
 
+        <Container>
+          <ul>
+            <li>React</li>
+            <li>JavaScript</li>
+            <li>CSS</li>
+          </ul>
+        </Container>
+
         {/* event as prop */}
         <ExecuteFunction myFunction={showMessage} />
 
